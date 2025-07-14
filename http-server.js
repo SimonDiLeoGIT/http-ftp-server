@@ -1,19 +1,17 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { channel } = require("diagnostics_channel");
 
 const app = express();
-const PORT = 3000;
-
-// Carpeta base donde están las imágenes
-const BASE_ROOT = "H:\\Omnibox v2";
+const PORT = process.env.PORT || 3000;
+const BASE_PATH = process.env.BASE_PATH;
 
 // Servir una imagen específica
 app.get("/images/:camera/:channel/:date/:filename", (req, res) => {
   const { camera, channel, date, filename } = req.params;
-  const imagePath = path.join(BASE_ROOT, camera, channel, date, filename);
-  console.log(imagePath);
+  const imagePath = path.join(BASE_PATH, camera, channel, date, filename);
+
   // Validar que el archivo existe
   fs.access(imagePath, fs.constants.F_OK, (err) => {
     if (err) {
