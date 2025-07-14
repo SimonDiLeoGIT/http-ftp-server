@@ -9,7 +9,7 @@ const PORT = 3000;
 const BASE_ROOT = "H:\\Omnibox v2";
 
 // Servir una imagen específica
-app.get("/images/:camera/:cannel/:date/:filename", (req, res) => {
+app.get("/images/:camera/:channel/:date/:filename", (req, res) => {
   const { camera, date, filename } = req.params;
   const imagePath = path.join(BASE_ROOT, camera, date, filename);
 
