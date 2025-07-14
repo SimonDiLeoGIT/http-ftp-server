@@ -12,7 +12,7 @@ const BASE_ROOT = "H:\\Omnibox v2";
 app.get("/images/:camera/:channel/:date/:filename", (req, res) => {
   const { camera, date, filename } = req.params;
   const imagePath = path.join(BASE_ROOT, camera, date, filename);
-
+  console.log(imagePath);
   // Validar que el archivo existe
   fs.access(imagePath, fs.constants.F_OK, (err) => {
     if (err) {
