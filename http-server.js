@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const { channel } = require("diagnostics_channel");
 
 const app = express();
 const PORT = 3000;
@@ -10,8 +11,8 @@ const BASE_ROOT = "H:\\Omnibox v2";
 
 // Servir una imagen específica
 app.get("/images/:camera/:channel/:date/:filename", (req, res) => {
-  const { camera, date, filename } = req.params;
-  const imagePath = path.join(BASE_ROOT, camera, date, filename);
+  const { camera, channel, date, filename } = req.params;
+  const imagePath = path.join(BASE_ROOT, camera, channel, date, filename);
   console.log(imagePath);
   // Validar que el archivo existe
   fs.access(imagePath, fs.constants.F_OK, (err) => {
